@@ -46,11 +46,34 @@ public class AstridGlowspell {
                 System.out.printf("\t\t %s\n", tasks.get(index - 1).toString());
             }
 
-            // add new task
-            else  {
-                tasks.add(new Task(input));
-                System.out.println("\t added: " + input);
+            else {
+
+                System.out.println("\t Got it. I've added the task");
+                if (input.startsWith("todo")){
+                    input = input.substring(5);
+                    Task curr = new ToDo(input);
+                    tasks.add(curr);
+                    System.out.printf("\t\t%s\n", curr.toString());
+                }
+
+                // add new Deadline Task
+                else if (input.startsWith("deadline")){
+                    input = input.substring(9);
+                    String[] inputs = input.split("/by");
+                    Task curr = new Deadline(inputs[0].trim(), inputs[1].trim());
+                    tasks.add(curr);
+                    System.out.printf("\t\t%s\n", curr.toString());
+
+                } else {
+                    input = input.substring(6);
+                    String[] inputs = input.split("/to | /from");
+                    Task curr = new Event(inputs[0].trim(), inputs[1].trim(), inputs[2].trim());
+                    tasks.add(curr);
+                    System.out.printf("\t\t%s\n", curr.toString());
+                }
+                System.out.println("\t Now you have " + tasks.size() + " tasks in the list");
             }
+
             System.out.println(divider);
 
             // take next command

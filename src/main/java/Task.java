@@ -13,7 +13,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return this.getStatus() + " " + this.desc;
+        return this.getStatus() + " " + this.desc + " ";
     }
 
     public void markAsDone() {
