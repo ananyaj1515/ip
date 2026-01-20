@@ -35,7 +35,7 @@ public class AstridGlowspell {
             else if (input.startsWith("mark")) {
                 try {
                     int index = Integer.parseInt(input.split(" ")[1]);
-                    if (index >= tasks.size()) {
+                    if (index > tasks.size()) {
                         throw new TaskNotFoundException();
                     }
                     tasks.get(index - 1).markAsDone();
@@ -50,12 +50,27 @@ public class AstridGlowspell {
             else if (input.startsWith("unmark")) {
                 try {
                     int index = Integer.parseInt(input.split(" ")[1]);
-                    if (index >= tasks.size()) {
+                    if (index > tasks.size()) {
                         throw new TaskNotFoundException();
                     }
                     tasks.get(index - 1).markAsUndone();
                     System.out.println("\t OK, I've marked this task as not done yet:");
                     System.out.printf("\t\t %s\n", tasks.get(index - 1).toString());
+                } catch (TaskNotFoundException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+
+            else if (input.startsWith("delete")) {
+                try {
+                    int index = Integer.parseInt(input.split(" ")[1]);
+                    if (index > tasks.size()) {
+                        throw new TaskNotFoundException();
+                    }
+                    Task removed = tasks.remove(index - 1);
+                    System.out.println("\t Noted. I've removed this task");
+                    System.out.printf("\t\t %s\n", removed);
+                    System.out.println("\t Now you have " + tasks.size() + " tasks in the list");
                 } catch (TaskNotFoundException e) {
                     System.out.println(e.getMessage());
                 }
