@@ -19,8 +19,9 @@ public class AstridGlowspell {
 
         // get user input
         String input = sc.nextLine();
-
         while (!(input.equals("bye"))) {
+
+            // for aesthetic
             System.out.println(divider);
 
             // view all tasks
@@ -32,48 +33,101 @@ public class AstridGlowspell {
 
             // mark task as done
             else if (input.startsWith("mark")) {
-                int index = Integer.parseInt(input.split(" ")[1]);
-                tasks.get(index - 1).markAsDone();
-                System.out.println("\t Nice I've marked this task as done:");
-                System.out.printf("\t\t %s\n", tasks.get(index - 1).toString());
+                try {
+                    int index = Integer.parseInt(input.split(" ")[1]);
+                    if (index >= tasks.size()) {
+                        throw new TaskNotFoundException();
+                    }
+                    tasks.get(index - 1).markAsDone();
+                    System.out.println("\t Nice I've marked this task as done:");
+                    System.out.printf("\t\t %s\n", tasks.get(index - 1).toString());
+                } catch (TaskNotFoundException e) {
+                    System.out.println(e.toString());
+                }
             }
 
             // unmark task as done
             else if (input.startsWith("unmark")) {
-                int index = Integer.parseInt(input.split(" ")[1]);
-                tasks.get(index - 1).markAsUndone();
-                System.out.println("\t OK, I've marked this task as not done yet:");
-                System.out.printf("\t\t %s\n", tasks.get(index - 1).toString());
+                try {
+                    int index = Integer.parseInt(input.split(" ")[1]);
+                    if (index >= tasks.size()) {
+                        throw new TaskNotFoundException();
+                    }
+                    tasks.get(index - 1).markAsUndone();
+                    System.out.println("\t OK, I've marked this task as not done yet:");
+                    System.out.printf("\t\t %s\n", tasks.get(index - 1).toString());
+                } catch (TaskNotFoundException e) {
+                    System.out.println(e.getMessage());
+                }
             }
 
+            // commands for adding different tasks
             else {
 
-                System.out.println("\t Got it. I've added the task");
+                //add new ToDo Task
                 if (input.startsWith("todo")){
-                    input = input.substring(5);
-                    Task curr = new ToDo(input);
-                    tasks.add(curr);
-                    System.out.printf("\t\t%s\n", curr.toString());
+                    try {
+                        input = input.substring(4);
+                        if (input.isEmpty()) {
+                            throw new MissingArgumentException("Oh no! The description of todo cannot be empty!");
+                        }
+                        Task curr = new ToDo(input);
+                        tasks.add(curr);
+                        System.out.println("\t Got it. I've added the task");
+                        System.out.printf("\t\t%s\n", curr);
+                        System.out.println("\t Now you have " + tasks.size() + " tasks in the list");
+
+                    } catch (MissingArgumentException e) {
+                        System.out.println(e.getMessage());
+                    }
                 }
 
                 // add new Deadline Task
                 else if (input.startsWith("deadline")){
-                    input = input.substring(9);
-                    String[] inputs = input.split("/by");
-                    Task curr = new Deadline(inputs[0].trim(), inputs[1].trim());
-                    tasks.add(curr);
-                    System.out.printf("\t\t%s\n", curr.toString());
+                    try {
+                        input = input.substring(8);
+                        String[] inputs = input.split("/by");
+                        if (inputs.length < 2) {
+                            throw new MissingArgumentException("Oh no! You forgot to enter the description or the deadline!");
+                        }
+                        Task curr = new Deadline(inputs[0].trim(), inputs[1].trim());
+                        tasks.add(curr);
+                        System.out.println("\t Got it. I've added the task");
+                        System.out.printf("\t\t%s\n", curr);
+                        System.out.println("\t Now you have " + tasks.size() + " tasks in the list");
 
+                    } catch (MissingArgumentException e) {
+                        System.out.println(e.getMessage());
+                    }
+
+                // add new event Task
+                } else if (input.startsWith("event")) {
+                    try {
+                        input = input.substring(5);
+                        String[] inputs = input.split("/to | /from");
+                        if (inputs.length < 3) {
+                            throw new MissingArgumentException("Oh no! You forgot to enter the description or the start or the end!");
+                        }
+                        Task curr = new Event(inputs[0].trim(), inputs[1].trim(), inputs[2].trim());
+                        tasks.add(curr);
+                        System.out.println("\t Got it. I've added the task");
+                        System.out.printf("\t\t%s\n", curr);
+                        System.out.println("\t Now you have " + tasks.size() + " tasks in the list");
+                    } catch (MissingArgumentException e) {
+                        System.out.println(e.getMessage());
+                    }
+
+                // command doesn't exist
                 } else {
-                    input = input.substring(6);
-                    String[] inputs = input.split("/to | /from");
-                    Task curr = new Event(inputs[0].trim(), inputs[1].trim(), inputs[2].trim());
-                    tasks.add(curr);
-                    System.out.printf("\t\t%s\n", curr.toString());
+                    try {
+                        throw new UnknownCommandException();
+                    } catch (UnknownCommandException e) {
+                        System.out.println(e.getMessage());
+                    }
                 }
-                System.out.println("\t Now you have " + tasks.size() + " tasks in the list");
             }
 
+            // for aesthetic
             System.out.println(divider);
 
             // take next command
