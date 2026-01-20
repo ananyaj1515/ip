@@ -61,6 +61,7 @@ public class AstridGlowspell {
                 }
             }
 
+            // delete task from collection
             else if (input.startsWith("delete")) {
                 try {
                     int index = Integer.parseInt(input.split(" ")[1]);
