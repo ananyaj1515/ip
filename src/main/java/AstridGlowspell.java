@@ -204,8 +204,8 @@ public class AstridGlowspell {
             } catch (DukeException e) {
                 System.out.println(e.getMessage());
             }
-        }
 
+        }
         this.simulate();
     }
 

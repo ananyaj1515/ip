@@ -1,0 +1,7 @@
+list
+todo read book
+mark 1
+unmark 1
+deadline submit cs2103t quiz /by 23rd Jan 23:59
+event go for a walk /from 22nd Jan 2 pm /to 4 pm
+delete 1
