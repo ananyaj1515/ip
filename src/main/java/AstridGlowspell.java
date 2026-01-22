@@ -160,46 +160,52 @@ public class AstridGlowspell {
 
     // helper function to run to manage inputted commands
     private void simulate() {
-        try {
-            String input = this.sc.nextLine();
-            String[] inputs = input.split(" ", 2);
-            int index = 0;
-            Command command = this.getEnumCommand(inputs[0]);
-            if (command == Command.MARK || command == Command.UNMARK || command == Command.DELETE) {
-                index = Integer.parseInt(inputs[1]);
-            }
+        while (sc.hasNextLine()) {
+            try {
+                if (!sc.hasNextLine()) {
+                    return;
+                }
+                String input = this.sc.nextLine();
+                String[] inputs = input.split(" ", 2);
+                int index = 0;
+                Command command = this.getEnumCommand(inputs[0]);
+                if (command == Command.MARK || command == Command.UNMARK || command == Command.DELETE) {
+                    index = Integer.parseInt(inputs[1]);
+                }
 
-            switch(command) {
-                case LIST:
-                    this.list();
-                    break;
-                case MARK:
-                    this.mark(index);
-                    break;
-                case UNMARK:
-                    this.unmark(index);
-                    break;
-                case DELETE:
-                    this.delete(index);
-                    break;
-                case TODO:
-                    this.toDo(inputs[1]);
-                    break;
-                case DEADLINE:
-                    this.deadline(inputs[1]);
-                    break;
-                case EVENT:
-                    this.event(inputs[1]);
-                    break;
-                case BYE:
-                    this.bye();
-                    break;
-                default:
-                    throw new UnknownCommandException();
+                switch(command) {
+                    case LIST:
+                        this.list();
+                        break;
+                    case MARK:
+                        this.mark(index);
+                        break;
+                    case UNMARK:
+                        this.unmark(index);
+                        break;
+                    case DELETE:
+                        this.delete(index);
+                        break;
+                    case TODO:
+                        this.toDo(inputs[1]);
+                        break;
+                    case DEADLINE:
+                        this.deadline(inputs[1]);
+                        break;
+                    case EVENT:
+                        this.event(inputs[1]);
+                        break;
+                    case BYE:
+                        this.bye();
+                        return;
+                    default:
+                        throw new UnknownCommandException();
+                }
+            } catch (DukeException e) {
+                System.out.println(e.getMessage());
             }
-        } catch (DukeException e) {
-            System.out.println(e.getMessage());
         }
+
         this.simulate();
     }
 
