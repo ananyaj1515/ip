@@ -153,9 +153,18 @@ public class AstridGlowspell {
     }
 
     // convert command to an enum for the case statement
-    private Command getEnumCommand(String command) {
+    private Command getEnumCommand(String command) throws UnknownCommandException{
         String commandUpper= command.trim().toUpperCase();
-        return Command.valueOf(commandUpper);
+        Command eCommand;
+        try {
+            eCommand =  Command.valueOf(commandUpper);
+        }
+
+        // backup case when the command doesn't exist
+        catch (IllegalArgumentException e) {
+            throw new UnknownCommandException();
+        }
+        return eCommand;
     }
 
     // helper function to run to manage inputted commands
