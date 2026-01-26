@@ -7,8 +7,17 @@ public class Task {
         this.isDone = false;
     }
 
+
     public String getStatus() {
         return isDone ? "[X]" : "[ ]";
+    }
+
+    public String getStoreStatus() {
+        return isDone ? "1" : "0";
+    }
+
+    public String getDesc() {
+        return this.desc;
     }
 
     @Override
@@ -20,7 +29,12 @@ public class Task {
         this.isDone = true;
     }
 
+
     public void markAsUndone() {
         this.isDone = false;
+    }
+
+    public String storeFormat() {
+        return "";
     }
 }

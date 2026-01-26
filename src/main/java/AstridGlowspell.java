@@ -1,17 +1,74 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import java.io.File;
+import java.io.FileWriter;
 
 public class AstridGlowspell {
 
     // instance variables
-    private Scanner sc = new Scanner(System.in);
+    File data = new File("data/AstridGlowspell.txt");
+    private final Scanner inputScanner = new Scanner(System.in);
+    private Scanner fileScanner;
+    private FileWriter fw;
     private ArrayList<Task> tasks = new ArrayList<>();
+
+    public AstridGlowspell() {
+        try {
+            fileScanner = new Scanner(data);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        loadStoredTasks();
+    }
+
 
     // static variables
     private static final String divider = "\t°. ݁₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.\n";
     private static enum Command {
         LIST, MARK, UNMARK, DELETE, TODO, DEADLINE, EVENT, BYE
+    }
+
+    private void loadStoredTasks() {
+        while (fileScanner.hasNextLine()) {
+           String curr = fileScanner.nextLine();
+           String[] params = curr.split("\\s*[|-]\\s*");
+           Task task;
+           switch (params[0]){
+               case "T":
+                   task = new ToDo(params[2]);
+                   if (params[1].equals("1")) {
+                       task.markAsDone();
+                   }
+                   tasks.add(task);
+                   break;
+               case "D":
+                   task = new Deadline(params[2], params[3]);
+                   if (params[1].equals("1")) {
+                       task.markAsDone();
+                   }
+                   tasks.add(task);
+                   break;
+               case "E":
+                   task = new Event(params[2], params[3], params[4]);
+                   if (params[1].equals("1")) {
+                       task.markAsDone();
+                   }
+                   tasks.add(task);
+                   break;
+           }
+
+        }
+    }
+
+    private void saveToFile() throws IOException {
+
+        fw = new FileWriter(data);
+        for (Task curr : tasks) {
+            fw.write(curr.storeFormat() + "\n" );
+        }
+        fw.close();
     }
 
     // greeting
@@ -159,7 +216,6 @@ public class AstridGlowspell {
         try {
             eCommand =  Command.valueOf(commandUpper);
         }
-
         // backup case when the command doesn't exist
         catch (IllegalArgumentException e) {
             throw new UnknownCommandException();
@@ -169,12 +225,12 @@ public class AstridGlowspell {
 
     // helper function to run to manage inputted commands
     private void simulate() {
-        while (sc.hasNextLine()) {
+        while (inputScanner.hasNextLine()) {
             try {
-                if (!sc.hasNextLine()) {
+                if (!inputScanner.hasNextLine()) {
                     return;
                 }
-                String input = this.sc.nextLine();
+                String input = this.inputScanner.nextLine();
                 String[] inputs = input.split(" ", 2);
                 int index = 0;
                 Command command = this.getEnumCommand(inputs[0]);
@@ -206,6 +262,11 @@ public class AstridGlowspell {
                         break;
                     case BYE:
                         this.bye();
+                        try {
+                            this.saveToFile();
+                        } catch (IOException e) {
+                            System.out.println(e.getMessage());
+                        }
                         return;
                     default:
                         throw new UnknownCommandException();
@@ -213,7 +274,6 @@ public class AstridGlowspell {
             } catch (DukeException e) {
                 System.out.println(e.getMessage());
             }
-
         }
         this.simulate();
     }
