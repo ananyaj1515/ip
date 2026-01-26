@@ -13,62 +13,16 @@ public class AstridGlowspell {
     private Scanner fileScanner;
     private FileWriter fw;
     private ArrayList<Task> tasks = new ArrayList<>();
+    Storage storage = new Storage("data/AstridGlowspell.txt");
 
     public AstridGlowspell() {
-        try {
-            fileScanner = new Scanner(data);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        loadStoredTasks();
+        storage.loadStoredTasks(tasks);
     }
-
 
     // static variables
     private static final String divider = "\t°. ݁₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.\n";
     private static enum Command {
         LIST, MARK, UNMARK, DELETE, TODO, DEADLINE, EVENT, BYE
-    }
-
-    private void loadStoredTasks() {
-        while (fileScanner.hasNextLine()) {
-           String curr = fileScanner.nextLine();
-           String[] params = curr.split("\\s*[|-]\\s*");
-           Task task;
-           switch (params[0]){
-               case "T":
-                   task = new ToDo(params[2]);
-                   if (params[1].equals("1")) {
-                       task.markAsDone();
-                   }
-                   tasks.add(task);
-                   break;
-               case "D":
-                   task = new Deadline(params[2], params[3]);
-                   if (params[1].equals("1")) {
-                       task.markAsDone();
-                   }
-                   tasks.add(task);
-                   break;
-               case "E":
-                   task = new Event(params[2], params[3], params[4]);
-                   if (params[1].equals("1")) {
-                       task.markAsDone();
-                   }
-                   tasks.add(task);
-                   break;
-           }
-
-        }
-    }
-
-    private void saveToFile() throws IOException {
-
-        fw = new FileWriter(data);
-        for (Task curr : tasks) {
-            fw.write(curr.storeFormat() + "\n" );
-        }
-        fw.close();
     }
 
     // greeting
@@ -263,7 +217,7 @@ public class AstridGlowspell {
                     case BYE:
                         this.bye();
                         try {
-                            this.saveToFile();
+                            storage.saveToFile(tasks);
                         } catch (IOException e) {
                             System.out.println(e.getMessage());
                         }

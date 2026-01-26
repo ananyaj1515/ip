@@ -1,4 +1,2 @@
-T | 0 | read book
-D | 1 | return book | Sunday
-E | 0 | project meeting | Mon 2pm-4pm
-T | 1 | dance
+T | 0 | hi
+T | 0 | what the helly
