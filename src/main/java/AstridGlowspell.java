@@ -24,7 +24,6 @@ public class AstridGlowspell {
     }
 
 
-
     // static variables
     private static final String divider = "\t°. ݁₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.\n";
     private static enum Command {
