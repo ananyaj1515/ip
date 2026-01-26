@@ -11,4 +11,9 @@ public class Deadline extends Task {
     public String toString() {
         return "[D]" + super.toString() + " (by: " + finishBy + ")";
     }
+
+    @Override
+    public String storeFormat() {
+        return "D | " + this.getStoreStatus() + " | " + this.getDesc() + " | " + finishBy;
+    }
 }

@@ -13,4 +13,9 @@ public class Event extends Task{
     public String toString() {
         return "[E]" + super.toString() + " (from: " + start + " to: " + end + ")";
     }
+
+    @Override
+    public String storeFormat() {
+        return "E | " + this.getStoreStatus() + " | " + this.getDesc() + " | " + start + "-" + end;
+    }
 }

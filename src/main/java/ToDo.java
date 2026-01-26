@@ -8,4 +8,9 @@ public class ToDo extends Task{
     public String toString() {
         return "[T]" + super.toString();
     }
+
+    @Override
+    public String storeFormat() {
+        return "T | " + this.getStoreStatus() + " | " + this.getDesc();
+    }
 }
