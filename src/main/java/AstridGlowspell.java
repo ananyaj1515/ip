@@ -1,4 +1,3 @@
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -17,9 +16,6 @@ public class AstridGlowspell {
     }
 
     // static variables
-    private static enum Command {
-        LIST, MARK, UNMARK, DELETE, TODO, DEADLINE, EVENT, BYE
-    }
 
     // view all tasks
     private void list() {
@@ -124,20 +120,6 @@ public class AstridGlowspell {
         }
     }
 
-    // convert command to an enum for the case statement
-    private Command getEnumCommand(String command) throws UnknownCommandException{
-        String commandUpper= command.trim().toUpperCase();
-        Command eCommand;
-        try {
-            eCommand =  Command.valueOf(commandUpper);
-        }
-        // backup case when the command doesn't exist
-        catch (IllegalArgumentException e) {
-            throw new UnknownCommandException();
-        }
-        return eCommand;
-    }
-
     // helper function to run to manage inputted commands
     private void simulate() {
         while (inputScanner.hasNextLine()) {
@@ -146,34 +128,30 @@ public class AstridGlowspell {
                     return;
                 }
                 String input = this.inputScanner.nextLine();
-                String[] inputs = input.split(" ", 2);
-                int index = 0;
-                Command command = this.getEnumCommand(inputs[0]);
-                if (command == Command.MARK || command == Command.UNMARK || command == Command.DELETE) {
-                    index = Integer.parseInt(inputs[1]);
-                }
+                Command command = Parser.parseCommand(input);
+                String argument = Parser.parseArguments(input);
 
                 switch(command) {
                     case LIST:
                         this.list();
                         break;
                     case MARK:
-                        this.mark(index);
+                        this.mark(Parser.parseIndex(argument));
                         break;
                     case UNMARK:
-                        this.unmark(index);
+                        this.unmark(Parser.parseIndex(argument));
                         break;
                     case DELETE:
-                        this.delete(index);
+                        this.delete(Parser.parseIndex(argument));
                         break;
                     case TODO:
-                        this.toDo(inputs[1]);
+                        this.toDo(argument);
                         break;
                     case DEADLINE:
-                        this.deadline(inputs[1]);
+                        this.deadline(argument);
                         break;
                     case EVENT:
-                        this.event(inputs[1]);
+                        this.event(argument);
                         break;
                     case BYE:
                         ui.bye();
