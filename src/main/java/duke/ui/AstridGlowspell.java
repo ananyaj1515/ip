@@ -1,6 +1,15 @@
+package duke.ui;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
+import duke.Storage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import duke.*;
+import duke.Command;
 
 public class AstridGlowspell {
 
@@ -168,7 +177,6 @@ public class AstridGlowspell {
                 System.out.println(e.getMessage());
             }
         }
-        this.simulate();
     }
 
     public static void main(String[] args) {

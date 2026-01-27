@@ -1,4 +1,5 @@
 D | 0 | return book | 2/12/2019 1800
 E | 0 | attend webinar | 13/05/2026 1200-13/05/2026 1400
-T | 0 | get a life
-D | 1 | return book | 2/12/2019 1800
+D | 0 | return book | 2/12/2019 1800
+T | 1 | hi
+T | 0 | hi

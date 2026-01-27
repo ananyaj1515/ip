@@ -1,3 +1,5 @@
+package duke;
+
 public class Parser {
     public static Command parseCommand(String input)  {
         String command = input.trim().split(" ")[0].toUpperCase();
@@ -14,7 +16,7 @@ public class Parser {
         return parts.length < 2 ? "" : parts[1].trim();
     }
 
-    public static int parseIndex(String input) throws DukeException{
+    public static int parseIndex(String input) throws DukeException {
         try {
             return Integer.parseInt(input);
         } catch(NumberFormatException e) {

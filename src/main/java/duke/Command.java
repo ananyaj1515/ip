@@ -1,7 +1,9 @@
+package duke;
+
 public enum Command {
         LIST, MARK, UNMARK, DELETE, TODO, DEADLINE, EVENT, BYE;
 
-    public static Command getEnumCommand(String command) throws UnknownCommandException{
+    public static Command getEnumCommand(String command) throws UnknownCommandException {
         String commandUpper= command.trim().toUpperCase();
         Command eCommand;
         try {
