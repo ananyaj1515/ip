@@ -4,7 +4,7 @@ import duke.task.Task;
 
 public class Ui {
 
-    private static final String divider = "\t°. ݁₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.\n";
+    private static final String DIVIDER = "\t°. ݁₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.\n";
 
     /**
      * Wraps the output text in decorative divider with an indent (1 tab)
@@ -13,9 +13,9 @@ public class Ui {
      *
      */
     public void dividerWrap(String text) {
-        System.out.println(divider);
+        System.out.println(DIVIDER);
         System.out.println('\t' + text);
-        System.out.print(divider);
+        System.out.print(DIVIDER);
     }
 
     /**
@@ -24,9 +24,9 @@ public class Ui {
      * @param text output
      */
     public void dividerWrapNoTab(String text) {
-        System.out.println(divider);
+        System.out.println(DIVIDER);
         System.out.println(text);
-        System.out.print(divider);
+        System.out.print(DIVIDER);
     }
 
     /**
@@ -35,9 +35,9 @@ public class Ui {
      * @param text output as StringBuilder
      */
     public void dividerWrap(StringBuilder text) {
-        System.out.println(divider);
+        System.out.println(DIVIDER);
         System.out.println(text);
-        System.out.print(divider);
+        System.out.print(DIVIDER);
     }
 
     /**
@@ -45,7 +45,7 @@ public class Ui {
      */
     public void greet() {
         String greeting = "\tHi Starlight, I am Astrid Glowspell! The planets were gossiping and your name came up\n";
-        System.out.print(divider + greeting + divider);
+        System.out.print(DIVIDER + greeting + DIVIDER);
     }
 
     /**
@@ -53,7 +53,7 @@ public class Ui {
      */
     public void bye() {
         String farewell = "\tUntil our planets align again, may your transits be gentle\n";
-        System.out.print(divider + farewell + divider);
+        System.out.print(DIVIDER + farewell + DIVIDER);
     }
 
     /**
