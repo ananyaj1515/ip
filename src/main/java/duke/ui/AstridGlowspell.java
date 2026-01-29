@@ -24,9 +24,9 @@ public class AstridGlowspell {
         ui.greet();
     }
 
-    // static variables
-
-    // view all tasks
+    /**
+     * Prints list of current tasks
+     */
     private void list() {
         if (tasks.isEmpty()) {
             ui.dividerWrap("You have no tasks yet!");
@@ -35,7 +35,11 @@ public class AstridGlowspell {
         ui.dividerWrapNoTab(tasks.toString());
     }
 
-    // mark as done
+    /**
+     * Marks Task at given index as done
+     *
+     * @param index task number in list (1-indexed)
+     */
     private void mark(int index) {
         try {
             if (index > this.tasks.size()) {
@@ -49,7 +53,11 @@ public class AstridGlowspell {
         }
     }
 
-    // unmark as done
+    /**
+     * Marks Task at given index as not done
+     *
+     * @param index task number in list (1-indexed)
+     */
     private void unmark(int index) {
         try {
             if (index > tasks.size()) {
@@ -65,6 +73,11 @@ public class AstridGlowspell {
     }
 
     // delete task
+    /**
+     * Removes Task at given index from list
+     *
+     * @param index task number in list (1-indexed)
+     */
     private void delete(int index) {
         try {
             if (index > tasks.size()) {
@@ -78,6 +91,11 @@ public class AstridGlowspell {
     }
 
     // add new todo
+    /**
+     * Creates new ToDo task, adds to list and prints confirmation to user
+     *
+     * @param input string containing Task description
+     */
     private void toDo(String input) {
         try {
             if (input.isEmpty()) {
@@ -93,6 +111,11 @@ public class AstridGlowspell {
     }
 
     // add new deadline
+    /**
+     * Creates new Deadline task, adds to list and prints confirmation to user
+     *
+     * @param input string containing Task description, finishBy
+     */
     private void deadline(String input) {
         try {
             String[] inputs = input.split("/by");
@@ -108,7 +131,11 @@ public class AstridGlowspell {
         }
     }
 
-    // add new event
+    /**
+     * Creates new Deadline task, adds to list and prints confirmation to user
+     *
+     * @param input string containing Task description, from and to
+     */
     private void event(String input) {
         try {
             String[] inputs = input.split("/to|/from");
@@ -124,8 +151,12 @@ public class AstridGlowspell {
         }
     }
 
-    // helper function to run to manage inputted commands
-    private void simulate() {
+    /**
+     * Simulates the chatbot by accepting user input
+     * Parses the input to find corresponding command
+     * Executes command
+     */
+    private void simulate(){
         while (inputScanner.hasNextLine()) {
             try {
                 if (!inputScanner.hasNextLine()) {

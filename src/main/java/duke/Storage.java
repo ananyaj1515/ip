@@ -18,24 +18,30 @@ public class Storage {
 
     public Storage(String path) {
         this.file = new File(path);
-        if (!file.exists()) {
-            return;
-        }
+
         try {
+
+            File parent = file.getParentFile();
+            if (parent != null) {
+                parent.mkdirs();
+            }
+
+
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+
             this.fileScanner = new Scanner(this.file);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Error initializing storage: " + e.getMessage());
         }
     }
 
     public void saveToFile(TaskList tasks) throws IOException {
-        File parent = file.getParentFile();
-        if (parent != null) {
-            parent.mkdirs();
-        }
         this.fw = new FileWriter(this.file);
         for (Task curr : tasks.getList()) {
-            this.fw.write(curr.storeFormat() + "\n" );
+            this.fw.write(curr.storeFormat() + "\n");
         }
         this.fw.close();
     }
@@ -45,30 +51,29 @@ public class Storage {
             String curr = this.fileScanner.nextLine();
             String[] params = curr.split("\\s*[|-]\\s*");
             Task task;
-            switch (params[0]){
+            switch (params[0]) {
                 case "T":
                     task = new ToDo(params[2]);
-                    if (params[1].equals("1")) {
+                    if ("1".equals(params[1])) {
                         task.markAsDone();
                     }
                     tasks.add(task);
                     break;
                 case "D":
                     task = new Deadline(params[2], params[3]);
-                    if (params[1].equals("1")) {
+                    if ("1".equals(params[1])) {
                         task.markAsDone();
                     }
                     tasks.add(task);
                     break;
                 case "E":
                     task = new Event(params[2], params[3], params[4]);
-                    if (params[1].equals("1")) {
+                    if ("1".equals(params[1])) {
                         task.markAsDone();
                     }
                     tasks.add(task);
                     break;
             }
-
         }
     }
 }
