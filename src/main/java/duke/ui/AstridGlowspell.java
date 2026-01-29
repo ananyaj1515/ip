@@ -14,7 +14,7 @@ import duke.Command;
 public class AstridGlowspell {
 
     // instance variables
-    private final Scanner inputScanner = new Scanner(System.in);
+    private final Scanner INPUT_SCANNER = new Scanner(System.in);
     private TaskList tasks = new TaskList();
     Ui ui = new Ui();
     Storage storage = new Storage("./data/AstridGlowspell.txt");
@@ -126,47 +126,47 @@ public class AstridGlowspell {
 
     // helper function to run to manage inputted commands
     private void simulate() {
-        while (inputScanner.hasNextLine()) {
+        while (INPUT_SCANNER.hasNextLine()) {
             try {
-                if (!inputScanner.hasNextLine()) {
+                if (!INPUT_SCANNER.hasNextLine()) {
                     return;
                 }
-                String input = this.inputScanner.nextLine();
+                String input = this.INPUT_SCANNER.nextLine();
                 Command command = Parser.parseCommand(input);
                 String argument = Parser.parseArguments(input);
 
                 switch(command) {
-                    case LIST:
-                        this.list();
-                        break;
-                    case MARK:
-                        this.mark(Parser.parseIndex(argument));
-                        break;
-                    case UNMARK:
-                        this.unmark(Parser.parseIndex(argument));
-                        break;
-                    case DELETE:
-                        this.delete(Parser.parseIndex(argument));
-                        break;
-                    case TODO:
-                        this.toDo(argument);
-                        break;
-                    case DEADLINE:
-                        this.deadline(argument);
-                        break;
-                    case EVENT:
-                        this.event(argument);
-                        break;
-                    case BYE:
-                        ui.bye();
-                        try {
-                            storage.saveToFile(tasks);
-                        } catch (IOException e) {
-                            System.out.println(e.getMessage());
-                        }
-                        return;
-                    default:
-                        throw new UnknownCommandException();
+                case LIST:
+                    this.list();
+                    break;
+                case MARK:
+                    this.mark(Parser.parseIndex(argument));
+                    break;
+                case UNMARK:
+                    this.unmark(Parser.parseIndex(argument));
+                    break;
+                case DELETE:
+                    this.delete(Parser.parseIndex(argument));
+                    break;
+                case TODO:
+                    this.toDo(argument);
+                    break;
+                case DEADLINE:
+                    this.deadline(argument);
+                    break;
+                case EVENT:
+                    this.event(argument);
+                    break;
+                case BYE:
+                    ui.bye();
+                    try {
+                        storage.saveToFile(tasks);
+                    } catch (IOException e) {
+                        System.out.println(e.getMessage());
+                    }
+                    return;
+                default:
+                    throw new UnknownCommandException();
                 }
             } catch (DukeException e) {
                 System.out.println(e.getMessage());

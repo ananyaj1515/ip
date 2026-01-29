@@ -4,34 +4,34 @@ import duke.task.Task;
 
 public class Ui {
 
-    private static final String divider = "\t°. ݁₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.\n";
+    private static final String DIVIDER = "\t°. ݁₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.\n";
 
     public void dividerWrap(String text) {
-        System.out.println(divider);
+        System.out.println(DIVIDER);
         System.out.println('\t' + text);
-        System.out.print(divider);
+        System.out.print(DIVIDER);
     }
 
     public void dividerWrapNoTab(String text) {
-        System.out.println(divider);
+        System.out.println(DIVIDER);
         System.out.println(text);
-        System.out.print(divider);
+        System.out.print(DIVIDER);
     }
 
     public void dividerWrap(StringBuilder text) {
-        System.out.println(divider);
+        System.out.println(DIVIDER);
         System.out.println(text);
-        System.out.print(divider);
+        System.out.print(DIVIDER);
     }
 
     public void greet() {
         String greeting = "\tHi Starlight, I am Astrid Glowspell! The planets were gossiping and your name came up\n";
-        System.out.print(divider + greeting + divider);
+        System.out.print(DIVIDER + greeting + DIVIDER);
     }
 
     public void bye() {
         String farewell = "\tUntil our planets align again, may your transits be gentle\n";
-        System.out.print(divider + farewell + divider);
+        System.out.print(DIVIDER + farewell + DIVIDER);
     }
 
     public void unmark(Task task) {
