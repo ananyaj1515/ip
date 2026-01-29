@@ -15,9 +15,9 @@ public class AstridGlowspell {
 
     // instance variables
     private final Scanner inputScanner = new Scanner(System.in);
-    private ArrayList<Task> tasks = new ArrayList<>();
+    private TaskList tasks = new TaskList();
     Ui ui = new Ui();
-    Storage storage = new Storage("data/AstridGlowspell.txt");
+    Storage storage = new Storage("./data/AstridGlowspell.txt");
 
     public AstridGlowspell() {
         storage.loadStoredTasks(tasks);
@@ -32,12 +32,7 @@ public class AstridGlowspell {
             ui.dividerWrap("You have no tasks yet!");
             return;
         }
-        StringBuilder str = new StringBuilder();
-        for (int i = 0; i < this.tasks.size(); i++) {
-            String formatted = String.format("\t %d. %s\n", i + 1,tasks.get(i).toString());
-            str.append(formatted);
-        }
-        ui.dividerWrap(str);
+        ui.dividerWrapNoTab(tasks.toString());
     }
 
     // mark as done
@@ -46,7 +41,7 @@ public class AstridGlowspell {
             if (index > this.tasks.size()) {
                 throw new TaskNotFoundException();
             }
-            Task task = tasks.get(index - 1);
+            Task task = tasks.get(index);
             task.markAsDone();
             ui.mark(task);
         } catch (TaskNotFoundException e) {
@@ -60,7 +55,7 @@ public class AstridGlowspell {
             if (index > tasks.size()) {
                 throw new TaskNotFoundException();
             }
-            Task task = tasks.get(index - 1);
+            Task task = tasks.get(index);
             task.markAsUndone();
             ui.unmark(task);
 
@@ -75,7 +70,7 @@ public class AstridGlowspell {
             if (index > tasks.size()) {
                 throw new TaskNotFoundException();
             }
-            Task removed = tasks.remove(index - 1);
+            Task removed = tasks.remove(index);
             ui.delete(removed, tasks.size());
         } catch (TaskNotFoundException e) {
             System.out.println(e.getMessage());
@@ -116,7 +111,7 @@ public class AstridGlowspell {
     // add new event
     private void event(String input) {
         try {
-            String[] inputs = input.split("/to | /from");
+            String[] inputs = input.split("/to|/from");
             if (inputs.length < 3) {
                 throw new MissingArgumentException("Oh no! You forgot to enter the description or the start or the end!");
             }

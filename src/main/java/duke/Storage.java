@@ -18,6 +18,9 @@ public class Storage {
 
     public Storage(String path) {
         this.file = new File(path);
+        if (!file.exists()) {
+            return;
+        }
         try {
             this.fileScanner = new Scanner(this.file);
         } catch (Exception e) {
@@ -25,15 +28,19 @@ public class Storage {
         }
     }
 
-    public void saveToFile(ArrayList<Task> tasks) throws IOException {
+    public void saveToFile(TaskList tasks) throws IOException {
+        File parent = file.getParentFile();
+        if (parent != null) {
+            parent.mkdirs();
+        }
         this.fw = new FileWriter(this.file);
-        for (Task curr : tasks) {
+        for (Task curr : tasks.getList()) {
             this.fw.write(curr.storeFormat() + "\n" );
         }
         this.fw.close();
     }
 
-    public void loadStoredTasks(ArrayList<Task> tasks) {
+    public void loadStoredTasks(TaskList tasks) {
         while (fileScanner.hasNextLine()) {
             String curr = this.fileScanner.nextLine();
             String[] params = curr.split("\\s*[|-]\\s*");

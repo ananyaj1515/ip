@@ -12,6 +12,12 @@ public class Ui {
         System.out.print(divider);
     }
 
+    public void dividerWrapNoTab(String text) {
+        System.out.println(divider);
+        System.out.println(text);
+        System.out.print(divider);
+    }
+
     public void dividerWrap(StringBuilder text) {
         System.out.println(divider);
         System.out.println(text);
