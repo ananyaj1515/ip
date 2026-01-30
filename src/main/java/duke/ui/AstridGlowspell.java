@@ -72,6 +72,11 @@ public class AstridGlowspell {
         }
     }
 
+    private void find(String keyword) {
+        TaskList res = tasks.find(keyword);
+        ui.find(res);
+    }
+
     /**
      * Removes Task at given index from list
      *
@@ -176,6 +181,9 @@ public class AstridGlowspell {
                     break;
                 case DELETE:
                     this.delete(Parser.parseIndex(argument));
+                    break;
+                case FIND:
+                    this.find(argument);
                     break;
                 case TODO:
                     this.toDo(argument);

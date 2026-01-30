@@ -50,6 +50,16 @@ public class TaskList {
         return this.tasks.isEmpty();
     }
 
+    public TaskList find(String keyword) {
+        TaskList results = new TaskList();
+        for (Task curr: this.tasks) {
+            if (curr.find(keyword) != null) {
+                results.add(curr);
+            }
+        }
+        return results;
+    }
+
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
