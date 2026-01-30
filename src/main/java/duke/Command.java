@@ -1,7 +1,7 @@
 package duke;
 
 public enum Command {
-        LIST, MARK, UNMARK, DELETE, TODO, DEADLINE, EVENT, BYE;
+        LIST, MARK, UNMARK, DELETE, TODO, DEADLINE, EVENT, BYE, FIND;
 
     /**
      * cleans user command and finds corresponding enum Command type

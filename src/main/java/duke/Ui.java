@@ -95,6 +95,13 @@ public class Ui {
         this.dividerWrap(str);
     }
 
+    public void find(TaskList results) {
+        StringBuilder str = new StringBuilder();
+        str.append("\t Here are the matching results from your list \n");
+        str.append(results.toString());
+        this.dividerWrapNoTab(str.toString());
+    }
+
     /**
      * Displays success message for adding new ToDo Task
      *

@@ -51,6 +51,10 @@ public class Task {
         this.isDone = false;
     }
 
+    public Task find(String keyword) {
+        return this.desc.contains(keyword) ? this : null;
+    }
+
     /**
      * generates string format of Task for writing to local file
      * @return String representation of Task for storage
