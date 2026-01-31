@@ -37,7 +37,6 @@ public class Task {
 
     /**
      * updates completion status of given task to done
-     * @return void
      */
     public void markAsDone() {
         this.isDone = true;
@@ -45,7 +44,6 @@ public class Task {
 
     /**
      * updates completion status of given task to not done
-     * @return void
      */
     public void markAsUndone() {
         this.isDone = false;

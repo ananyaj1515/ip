@@ -1,23 +1,30 @@
 package duke.ui;
 
+import java.io.IOException;
+import java.util.Scanner;
+
+import duke.Command;
+import duke.DukeException;
+import duke.MissingArgumentException;
+import duke.Parser;
+import duke.Storage;
+import duke.TaskList;
+import duke.TaskNotFoundException;
+import duke.Ui;
+import duke.UnknownCommandException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
-import duke.Storage;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
-import duke.*;
-import duke.Command;
+
 
 public class AstridGlowspell {
 
     // instance variables
-    private final Scanner INPUT_SCANNER = new Scanner(System.in);
+    private Scanner inputScanner = new Scanner(System.in);
     private TaskList tasks = new TaskList();
-    Ui ui = new Ui();
-    Storage storage = new Storage("./data/AstridGlowspell.txt");
+    private Ui ui = new Ui();
+    private Storage storage = new Storage("./data/AstridGlowspell.txt");
 
     public AstridGlowspell() {
         storage.loadStoredTasks(tasks);
@@ -143,7 +150,8 @@ public class AstridGlowspell {
         try {
             String[] inputs = input.split("/to|/from");
             if (inputs.length < 3) {
-                throw new MissingArgumentException("Oh no! You forgot to enter the description or the start or the end!");
+                throw new MissingArgumentException(
+                        "Oh no! You forgot to enter the description or the start or the end!");
             }
             Task curr = new Event(inputs[0].trim(), inputs[1].trim(), inputs[2].trim());
             tasks.add(curr);
@@ -160,12 +168,12 @@ public class AstridGlowspell {
      * Executes command
      */
     private void simulate() {
-        while (INPUT_SCANNER.hasNextLine()) {
+        while (inputScanner.hasNextLine()) {
             try {
-                if (!INPUT_SCANNER.hasNextLine()) {
+                if (!inputScanner.hasNextLine()) {
                     return;
                 }
-                String input = this.INPUT_SCANNER.nextLine();
+                String input = this.inputScanner.nextLine();
                 Command command = Parser.parseCommand(input);
                 String argument = Parser.parseArguments(input);
 

@@ -21,9 +21,9 @@ public class Ui {
     /**
      * Wraps the output text in decorative divider with no indent
      *
-     * @param text output
+     * @param text output as StringBuilder
      */
-    public void dividerWrapNoTab(String text) {
+    public void dividerWrap(StringBuilder text) {
         System.out.println(DIVIDER);
         System.out.println(text);
         System.out.print(DIVIDER);
@@ -32,13 +32,15 @@ public class Ui {
     /**
      * Wraps the output text in decorative divider with no indent
      *
-     * @param text output as StringBuilder
+     * @param text output
      */
-    public void dividerWrap(StringBuilder text) {
+    public void dividerWrapNoTab(String text) {
         System.out.println(DIVIDER);
         System.out.println(text);
         System.out.print(DIVIDER);
     }
+
+
 
     /**
      * Greets user

@@ -5,9 +5,10 @@ import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
 
-    LocalDateTime finishBy;
     private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("d/MM/yyyy HHmm");
     private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM d yyyy, HH:mm");
+
+    private LocalDateTime finishBy;
 
     public Deadline(String desc, String finishBy) {
         super(desc);

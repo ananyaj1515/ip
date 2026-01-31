@@ -1,7 +1,7 @@
 package duke;
 
 public class Parser {
-    public static Command parseCommand(String input)  {
+    public static Command parseCommand(String input) {
         String command = input.trim().split(" ")[0].toUpperCase();
         try {
             return Command.getEnumCommand(command);
@@ -19,7 +19,7 @@ public class Parser {
     public static int parseIndex(String input) throws DukeException {
         try {
             return Integer.parseInt(input);
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new DukeException("Index must be a number");
         }
     }
