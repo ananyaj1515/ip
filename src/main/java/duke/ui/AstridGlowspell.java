@@ -132,16 +132,16 @@ public class AstridGlowspell {
         }
     }
 
-
     /**
      * Creates new Deadline task, adds to list and prints confirmation to user
      *
      * @param input string containing Task description, finishBy
      */
     private String deadline(String input) {
+        int numArguments = 2;
         try {
             String[] inputs = input.split("/by");
-            if (inputs.length < 2) {
+            if (inputs.length < numArguments) {
                 throw new MissingArgumentException("Oh no! You forgot to enter the description or the deadline!");
             }
             Task curr = new Deadline(inputs[0].trim(), inputs[1].trim());
@@ -160,9 +160,10 @@ public class AstridGlowspell {
      * @param input string containing Task description, from and to
      */
     private String event(String input) {
+        int numArguments = 3;
         try {
             String[] inputs = input.split("/to|/from");
-            if (inputs.length < 3) {
+            if (inputs.length < numArguments) {
                 throw new MissingArgumentException(
                         "Oh no! You forgot to enter the description or the start or the end!");
             }
@@ -204,7 +205,6 @@ public class AstridGlowspell {
             case EVENT:
                 return this.event(argument);
             case BYE:
-
                 try {
                     storage.saveToFile(tasks);
                 } catch (IOException e) {

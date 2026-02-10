@@ -3,45 +3,6 @@ package duke;
 import duke.task.Task;
 
 public class Ui {
-
-    private static final String DIVIDER = "\t°. ݁₊ ⊹ . ݁ ⟡ ݁ . ⊹ ₊ ݁.\n";
-
-    /**
-     * Wraps the output text in decorative divider with an indent (1 tab)
-     *
-     * @param text output
-     *
-     */
-    public void dividerWrap(String text) {
-        System.out.println(DIVIDER);
-        System.out.println('\t' + text);
-        System.out.print(DIVIDER);
-    }
-
-    /**
-     * Wraps the output text in decorative divider with no indent
-     *
-     * @param text output as StringBuilder
-     */
-    public void dividerWrap(StringBuilder text) {
-        System.out.println(DIVIDER);
-        System.out.println(text);
-        System.out.print(DIVIDER);
-    }
-
-    /**
-     * Wraps the output text in decorative divider with no indent
-     *
-     * @param text output
-     */
-    public void dividerWrapNoTab(String text) {
-        System.out.println(DIVIDER);
-        System.out.println(text);
-        System.out.print(DIVIDER);
-    }
-
-
-
     /**
      * Greets user
      */
