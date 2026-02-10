@@ -2,6 +2,7 @@ package duke;
 
 public class Parser {
     public static Command parseCommand(String input) {
+        assert !input.isEmpty();
         String command = input.trim().split(" ")[0].toUpperCase();
         try {
             return Command.getEnumCommand(command);
@@ -12,6 +13,7 @@ public class Parser {
     }
 
     public static String parseArguments(String input) {
+        assert !input.isEmpty();
         String[] parts = input.split(" ", 2);
         return parts.length < 2 ? "" : parts[1].trim();
     }

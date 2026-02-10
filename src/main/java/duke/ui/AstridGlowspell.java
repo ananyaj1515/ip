@@ -52,6 +52,7 @@ public class AstridGlowspell {
      * @param index task number in list (1-indexed)
      */
     private String mark(int index) {
+        assert index > 0;
         try {
             if (index > this.tasks.size()) {
                 throw new TaskNotFoundException();
@@ -71,6 +72,7 @@ public class AstridGlowspell {
      * @param index task number in list (1-indexed)
      */
     private String unmark(int index) {
+        assert index > 0;
         try {
             if (index > tasks.size()) {
                 throw new TaskNotFoundException();
@@ -86,6 +88,7 @@ public class AstridGlowspell {
     }
 
     private String find(String keyword) {
+        assert !keyword.isEmpty();
         TaskList res = tasks.find(keyword);
         return ui.find(res);
     }
@@ -96,6 +99,7 @@ public class AstridGlowspell {
      * @param index task number in list (1-indexed)
      */
     private String delete(int index) {
+        assert index > 0;
         try {
             if (index > tasks.size()) {
                 throw new TaskNotFoundException();

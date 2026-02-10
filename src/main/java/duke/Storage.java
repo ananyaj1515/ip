@@ -18,6 +18,7 @@ public class Storage {
     private Scanner fileScanner;
 
     public Storage(String path) {
+        assert !path.isEmpty();
         this.file = new File(path);
 
         try {
