@@ -1,6 +1,9 @@
 package duke.task;
+import duke.TaskList;
 
-public class Task {
+import java.time.LocalDate;
+
+public abstract class Task {
     protected String desc;
     protected boolean isDone;
 
@@ -52,6 +55,8 @@ public class Task {
     public Task find(String keyword) {
         return this.desc.contains(keyword) ? this : null;
     }
+
+    public abstract Task today();
 
     /**
      * generates string format of Task for writing to local file

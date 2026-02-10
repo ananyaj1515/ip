@@ -1,5 +1,8 @@
 package duke.task;
 
+import duke.TaskList;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -13,6 +16,14 @@ public class Deadline extends Task {
     public Deadline(String desc, String finishBy) {
         super(desc);
         this.finishBy = LocalDateTime.parse(finishBy, INPUT_FORMAT);
+    }
+    @Override
+    public Task today() {
+        LocalDate today = LocalDate.now();
+        if (this.finishBy.toLocalDate().equals(today)) {
+            return this;
+        }
+        return null;
     }
 
     @Override

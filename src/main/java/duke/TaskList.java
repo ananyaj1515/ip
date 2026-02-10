@@ -1,4 +1,5 @@
 package duke;
+
 import java.util.ArrayList;
 
 import duke.task.Task;
@@ -57,6 +58,17 @@ public class TaskList {
             }
         }
         return results;
+    }
+
+    public TaskList remind() {
+       TaskList today = new TaskList();
+        for (Task curr : this.tasks) {
+           if (curr.today() != null) {
+               today.add(curr);
+           }
+       }
+        System.out.println(today);
+        return today;
     }
 
     @Override

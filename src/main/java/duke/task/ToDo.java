@@ -15,4 +15,9 @@ public class ToDo extends Task {
     public String storeFormat() {
         return "T | " + this.getStoreStatus() + " | " + this.getDesc();
     }
+
+    @Override
+    public Task today() {
+        return null;
+    }
 }

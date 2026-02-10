@@ -17,6 +17,8 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
 
+import static java.lang.System.exit;
+
 
 public class AstridGlowspell {
 
@@ -112,6 +114,11 @@ public class AstridGlowspell {
         }
     }
 
+    private String today() {
+        TaskList today = tasks.remind();
+        return ui.remind(today);
+    }
+
     /**
      * Creates new ToDo task, adds to list and prints confirmation to user
      *
@@ -204,13 +211,16 @@ public class AstridGlowspell {
                 return this.deadline(argument);
             case EVENT:
                 return this.event(argument);
+            case REMIND:
+                return this.today();
             case BYE:
                 try {
                     storage.saveToFile(tasks);
                 } catch (IOException e) {
                     System.out.println(e.getMessage());
                 }
-                return ui.bye();
+                ui.bye();
+                exit(0);
             default:
                 throw new UnknownCommandException();
             }

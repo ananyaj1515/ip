@@ -1,5 +1,8 @@
 package duke.task;
 
+import duke.TaskList;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -30,5 +33,14 @@ public class Event extends Task {
         return "E | " + this.getStoreStatus() + " | "
                 + this.getDesc() + " | " + start.format(INPUT_FORMAT)
                 + "-" + end.format(INPUT_FORMAT);
+    }
+
+
+    public Task today() {
+        LocalDate today = LocalDate.now();
+        if (this.start.toLocalDate().equals(today) || this.end.toLocalDate().equals(today)) {
+            return this;
+        }
+        return null;
     }
 }

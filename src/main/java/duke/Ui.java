@@ -63,6 +63,13 @@ public class Ui {
         return str.toString();
     }
 
+    public String remind(TaskList today) {
+        StringBuilder str = new StringBuilder();
+        str.append("\t Here are the tasks due today \n");
+        str.append(today.toString());
+        return str.toString();
+    }
+
     /**
      * Displays success message for adding new ToDo Task
      *
