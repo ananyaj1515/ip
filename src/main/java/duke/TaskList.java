@@ -46,10 +46,21 @@ public class TaskList {
         return this.tasks.get(index - 1);
     }
 
+    /**
+     * Checks whether the task list is empty.
+     *
+     * @return true if the list contains no tasks, false otherwise
+     */
     public boolean isEmpty() {
         return this.tasks.isEmpty();
     }
 
+    /**
+     * Searches tasks for the given keyword and returns a TaskList containing matches.
+     *
+     * @param keyword substring to search for in tasks
+     * @return TaskList containing tasks that match the keyword
+     */
     public TaskList find(String keyword) {
         TaskList results = new TaskList();
         for (Task curr: this.tasks) {
@@ -60,17 +71,27 @@ public class TaskList {
         return results;
     }
 
+    /**
+     * Collects tasks that are due or relevant for today and returns them in a TaskList.
+     *
+     * @return TaskList containing today's tasks
+     */
     public TaskList remind() {
-       TaskList today = new TaskList();
+        TaskList today = new TaskList();
         for (Task curr : this.tasks) {
-           if (curr.today() != null) {
-               today.add(curr);
-           }
-       }
+            if (curr.today() != null) {
+                today.add(curr);
+            }
+        }
         System.out.println(today);
         return today;
     }
 
+    /**
+     * Returns a formatted string representation of the task list.
+     *
+     * @return formatted list of tasks with index numbers
+     */
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
@@ -81,6 +102,11 @@ public class TaskList {
         return str.toString();
     }
 
+    /**
+     * Exposes the internal list of tasks.
+     *
+     * @return the underlying ArrayList of Task objects
+     */
     public ArrayList<Task> getList() {
         return this.tasks;
     }

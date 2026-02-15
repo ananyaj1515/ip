@@ -2,6 +2,7 @@ package duke.ui;
 
 import java.io.IOException;
 import java.util.Scanner;
+import static java.lang.System.exit;
 
 import duke.Command;
 import duke.DukeException;
@@ -17,9 +18,10 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
 
-import static java.lang.System.exit;
-
-
+/**
+ * AstridGlowspell is the UI/controller class that wires together parsing,
+ * task storage, task list management, and the user interface.
+ */
 public class AstridGlowspell {
 
     // instance variables
@@ -28,17 +30,30 @@ public class AstridGlowspell {
     private Ui ui = new Ui();
     private Storage storage = new Storage("./data/AstridGlowspell.txt");
 
+    /**
+     * Constructs a new AstridGlowspell instance, loads stored tasks and
+     * displays the greeting via the Ui.
+     */
     public AstridGlowspell() {
         storage.loadStoredTasks(tasks);
         ui.greet();
     }
 
+    /**
+     * Returns the chatbot's response for the given raw input string.
+     *
+     * @param input raw user input
+     * @return response string to be shown to the user
+     */
     public String getResponse(String input) {
         return simulate(input);
     }
 
     /**
-     * Prints list of current tasks
+     * Returns a string representation of the current task list or a message
+     * indicating the list is empty.
+     *
+     * @return list of tasks formatted for display or empty message
      */
     private String list() {
         if (tasks.isEmpty()) {
@@ -49,9 +64,11 @@ public class AstridGlowspell {
     }
 
     /**
-     * Marks Task at given index as done
+     * Marks the task at the given 1-indexed position as done and returns
+     * the confirmation message.
      *
      * @param index task number in list (1-indexed)
+     * @return confirmation message or error message if task not found
      */
     private String mark(int index) {
         assert index > 0;
@@ -69,9 +86,11 @@ public class AstridGlowspell {
     }
 
     /**
-     * Marks Task at given index as not done
+     * Marks the task at the given 1-indexed position as not done and returns
+     * the confirmation message.
      *
      * @param index task number in list (1-indexed)
+     * @return confirmation message or error message if task not found
      */
     private String unmark(int index) {
         assert index > 0;
@@ -89,6 +108,13 @@ public class AstridGlowspell {
         }
     }
 
+    /**
+     * Finds tasks that match the given keyword and returns the formatted
+     * find results via the Ui.
+     *
+     * @param keyword substring to search for in task descriptions
+     * @return formatted find results
+     */
     private String find(String keyword) {
         assert !keyword.isEmpty();
         TaskList res = tasks.find(keyword);
@@ -96,9 +122,11 @@ public class AstridGlowspell {
     }
 
     /**
-     * Removes Task at given index from list
+     * Removes the task at the given 1-indexed position from the list and
+     * returns the confirmation message.
      *
      * @param index task number in list (1-indexed)
+     * @return confirmation message or error message if task not found
      */
     private String delete(int index) {
         assert index > 0;
@@ -114,15 +142,23 @@ public class AstridGlowspell {
         }
     }
 
+    /**
+     * Collects tasks that are due or relevant for today and returns the
+     * reminder output from the Ui.
+     *
+     * @return formatted reminder information for today's tasks
+     */
     private String today() {
         TaskList today = tasks.remind();
         return ui.remind(today);
     }
 
     /**
-     * Creates new ToDo task, adds to list and prints confirmation to user
+     * Creates a new ToDo task from the given input, adds it to the list and
+     * returns the confirmation message.
      *
-     * @param input string containing Task description
+     * @param input description for the ToDo task
+     * @return confirmation message or error message if description missing
      */
     private String toDo(String input) {
         try {
@@ -140,9 +176,11 @@ public class AstridGlowspell {
     }
 
     /**
-     * Creates new Deadline task, adds to list and prints confirmation to user
+     * Creates a new Deadline task from the given input (description and /by),
+     * adds it to the list and returns the confirmation message.
      *
-     * @param input string containing Task description, finishBy
+     * @param input string containing Task description and \"/by\" deadline
+     * @return confirmation message or error message if arguments missing
      */
     private String deadline(String input) {
         int numArguments = 2;
@@ -162,9 +200,11 @@ public class AstridGlowspell {
     }
 
     /**
-     * Creates new Deadline task, adds to list and prints confirmation to user
+     * Creates a new Event task from the given input (description, /from, /to),
+     * adds it to the list and returns the confirmation message.
      *
-     * @param input string containing Task description, from and to
+     * @param input string containing Task description, \"/from\" start and \"/to\" end
+     * @return confirmation message or error message if arguments missing
      */
     private String event(String input) {
         int numArguments = 3;
@@ -185,9 +225,12 @@ public class AstridGlowspell {
     }
 
     /**
-     * Simulates the chatbot by accepting user input
-     * Parses the input to find corresponding command
-     * Executes command
+     * Parses and executes a single command input, delegating to the proper
+     * handler and returning the result string. On BYE the tasks will be saved
+     * and the application will attempt to exit.
+     *
+     * @param input raw user input
+     * @return output string resulting from executing the command, or error message
      */
     private String simulate(String input) {
         try {
@@ -195,34 +238,34 @@ public class AstridGlowspell {
             String argument = Parser.parseArguments(input);
 
             switch(command) {
-            case LIST:
-                return this.list();
-            case MARK:
-                return this.mark(Parser.parseIndex(argument));
-            case UNMARK:
-                return this.unmark(Parser.parseIndex(argument));
-            case DELETE:
-                return this.delete(Parser.parseIndex(argument));
-            case FIND:
-                return this.find(argument);
-            case TODO:
-                return this.toDo(argument);
-            case DEADLINE:
-                return this.deadline(argument);
-            case EVENT:
-                return this.event(argument);
-            case REMIND:
-                return this.today();
-            case BYE:
-                try {
-                    storage.saveToFile(tasks);
-                } catch (IOException e) {
-                    System.out.println(e.getMessage());
-                }
-                ui.bye();
-                exit(0);
-            default:
-                throw new UnknownCommandException();
+                case LIST:
+                    return this.list();
+                case MARK:
+                    return this.mark(Parser.parseIndex(argument));
+                case UNMARK:
+                    return this.unmark(Parser.parseIndex(argument));
+                case DELETE:
+                    return this.delete(Parser.parseIndex(argument));
+                case FIND:
+                    return this.find(argument);
+                case TODO:
+                    return this.toDo(argument);
+                case DEADLINE:
+                    return this.deadline(argument);
+                case EVENT:
+                    return this.event(argument);
+                case REMIND:
+                    return this.today();
+                case BYE:
+                    try {
+                        storage.saveToFile(tasks);
+                    } catch (IOException e) {
+                        System.out.println(e.getMessage());
+                    }
+                    ui.bye();
+                    exit(0);
+                default:
+                    throw new UnknownCommandException();
             }
         } catch (DukeException e) {
             System.out.println(e.getMessage());
