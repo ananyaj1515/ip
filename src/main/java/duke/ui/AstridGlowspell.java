@@ -2,6 +2,8 @@ package duke.ui;
 
 import java.io.IOException;
 import java.util.Scanner;
+
+import static java.lang.System.console;
 import static java.lang.System.exit;
 
 import duke.Command;
@@ -36,7 +38,6 @@ public class AstridGlowspell {
      */
     public AstridGlowspell() {
         storage.loadStoredTasks(tasks);
-        ui.greet();
     }
 
     /**
@@ -47,6 +48,10 @@ public class AstridGlowspell {
      */
     public String getResponse(String input) {
         return simulate(input);
+    }
+
+    public String greet() {
+        return ui.greet();
     }
 
     /**
@@ -60,7 +65,7 @@ public class AstridGlowspell {
 //            ui.dividerWrap("You have no tasks yet!");
             return "You have no tasks yet!";
         }
-        return tasks.toString();
+        return ui.list(tasks);
     }
 
     /**
@@ -262,5 +267,4 @@ public class AstridGlowspell {
             return e.getMessage();
         }
     }
-
 }

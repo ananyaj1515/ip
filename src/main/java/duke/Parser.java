@@ -20,7 +20,7 @@ public class Parser {
         assert !input.isEmpty();
         String command = input.trim().split(" ")[0].toUpperCase();
         try {
-            return Command.valueOf(command.toUpperCase());
+            return Command.getEnumCommand(command.toUpperCase());
         } catch (IllegalArgumentException e) {
             throw new UnknownCommandException();
         }
