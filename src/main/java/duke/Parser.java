@@ -16,15 +16,14 @@ public class Parser {
      * @return the matched {@code Command} enum, or {@code null} if parsing failed
      * @throws AssertionError if {@code input} is empty
      */
-    public static Command parseCommand(String input) {
+    public static Command parseCommand(String input) throws UnknownCommandException {
         assert !input.isEmpty();
         String command = input.trim().split(" ")[0].toUpperCase();
         try {
-            return Command.getEnumCommand(command);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+            return Command.valueOf(command.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new UnknownCommandException();
         }
-        return null;
     }
 
     /**
