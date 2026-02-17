@@ -34,7 +34,7 @@ public class Ui {
     public String unmark(Task task) {
         StringBuilder str = new StringBuilder();
         str.append("Fate delayed… interesting.\n I've marked this task as not done yet:\n");
-        str.append(String.format("\t %s\n", task.toString()));
+        str.append(String.format("\t%s\n", task.toString()));
         return str.toString();
     }
 
@@ -46,7 +46,7 @@ public class Ui {
     public String mark(Task task) {
         StringBuilder str = new StringBuilder();
         str.append("Destiny fulfilled. Saturn approves. \n I've marked this task as done:\n");
-        str.append(String.format("\t %s\n", task.toString()));
+        str.append(String.format("\t%s\n", task.toString()));
         return str.toString();
     }
 
@@ -60,21 +60,21 @@ public class Ui {
     public String delete(Task removed, int left) {
         StringBuilder str = new StringBuilder();
         str.append("Erased from the cosmic scroll. \nI've removed this task\n");
-        str.append(String.format("\t %s\n", removed));
-        str.append(String.format("\t Now you have " + left + " tasks in the list\n"));
+        str.append(String.format("\t%s\n", removed));
+        str.append(String.format("Now you have " + left + " tasks in the list\n"));
         return str.toString();
     }
 
     public String find(TaskList results) {
         StringBuilder str = new StringBuilder();
-        str.append("\t The stars revealed this: \n");
+        str.append("The stars revealed this: \n");
         str.append(results.toString());
         return str.toString();
     }
 
     public String remind(TaskList today) {
         StringBuilder str = new StringBuilder();
-        str.append("\t The moon requests your attention today for: \n");
+        str.append("The moon requests your attention today for: \n");
         str.append(today.toString());
         return str.toString();
     }
@@ -88,9 +88,9 @@ public class Ui {
      */
     public String toDo(Task added, int size) {
         StringBuilder str = new StringBuilder();
-        str.append("\t A new intention enters the stars.\n I've added the task\n");
-        str.append(String.format("\t\t%s\n", added));
-        str.append(String.format("\t Now you have " + size + " tasks in the list\n"));
+        str.append("A new intention enters the stars.\n I've added the task\n");
+        str.append(String.format("\t%s\n", added));
+        str.append(String.format("Now you have " + size + " tasks in the list\n"));
         return str.toString();
     }
 
@@ -103,9 +103,9 @@ public class Ui {
      */
     public String deadline(Task added, int size) {
         StringBuilder str = new StringBuilder();
-        str.append("\t A fated alignment has been marked.\n I've added the task\n");
-        str.append(String.format("\t\t%s\n", added));
-        str.append(String.format("\t Now you have " + size + " tasks in the list\n"));
+        str.append("A fated alignment has been marked.\n I've added the task\n");
+        str.append(String.format("\t%s\n", added));
+        str.append(String.format("Now you have " + size + " tasks in the list\n"));
         return str.toString();
     }
 
@@ -118,9 +118,9 @@ public class Ui {
      */
     public String event(Task added, int size) {
         StringBuilder str = new StringBuilder();
-        str.append("\t A cosmic affair begins and ends in my charts.\n I've added the task\n");
-        str.append(String.format("\t\t%s\n", added));
-        str.append(String.format("\t Now you have " + size + " tasks in the list\n"));
+        str.append("A cosmic affair begins and ends in my charts.\n I've added the task\n");
+        str.append(String.format("\t%s\n", added));
+        str.append(String.format("Now you have " + size + " tasks in the list\n"));
         return str.toString();
     }
 }
