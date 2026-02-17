@@ -80,8 +80,7 @@ public class AstridGlowspell {
             task.markAsDone();
             return ui.mark(task);
         } catch (TaskNotFoundException e) {
-            System.out.println(e.toString());
-            return(e.toString());
+            return(e.getMessage());
         }
     }
 
@@ -118,6 +117,9 @@ public class AstridGlowspell {
     private String find(String keyword) {
         assert !keyword.isEmpty();
         TaskList res = tasks.find(keyword);
+        if (res.isEmpty()) {
+            return "No matching tasks found!";
+        }
         return ui.find(res);
     }
 
@@ -150,6 +152,9 @@ public class AstridGlowspell {
      */
     private String today() {
         TaskList today = tasks.remind();
+        if (today.isEmpty()) {
+            return "You have no tasks due today!";
+        }
         return ui.remind(today);
     }
 
@@ -237,39 +242,25 @@ public class AstridGlowspell {
             Command command = Parser.parseCommand(input);
             String argument = Parser.parseArguments(input);
 
-            switch(command) {
-                case LIST:
-                    return this.list();
-                case MARK:
-                    return this.mark(Parser.parseIndex(argument));
-                case UNMARK:
-                    return this.unmark(Parser.parseIndex(argument));
-                case DELETE:
-                    return this.delete(Parser.parseIndex(argument));
-                case FIND:
-                    return this.find(argument);
-                case TODO:
-                    return this.toDo(argument);
-                case DEADLINE:
-                    return this.deadline(argument);
-                case EVENT:
-                    return this.event(argument);
-                case REMIND:
-                    return this.today();
+            switch (command) {
+                case LIST: return list();
+                case MARK: return mark(Parser.parseIndex(argument));
+                case UNMARK: return unmark(Parser.parseIndex(argument));
+                case DELETE: return delete(Parser.parseIndex(argument));
+                case FIND: return find(argument);
+                case TODO: return toDo(argument);
+                case DEADLINE: return deadline(argument);
+                case EVENT: return event(argument);
+                case REMIND: return today();
                 case BYE:
-                    try {
-                        storage.saveToFile(tasks);
-                    } catch (IOException e) {
-                        System.out.println(e.getMessage());
-                    }
-                    ui.bye();
-                    exit(0);
+                    storage.saveToFile(tasks);
+                    return ui.bye();
                 default:
                     throw new UnknownCommandException();
             }
-        } catch (DukeException e) {
-            System.out.println(e.getMessage());
+        } catch (DukeException | IOException e) {
             return e.getMessage();
         }
     }
+
 }
