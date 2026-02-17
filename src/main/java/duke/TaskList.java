@@ -95,7 +95,6 @@ public class TaskList {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        StringBuilder str = new StringBuilder();
         for (int i = 1; i <= this.tasks.size(); i++) {
             String formatted = String.format("%d. %s\n", i, tasks.get(i - 1).toString());
             str.append(formatted);
