@@ -43,13 +43,13 @@ test {
 }
 
 application {
-    mainClass.set("duke.Main")
+    mainClass.set("astrid.Main")
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "astrid"
     archiveClassifier = null
-    archiveFileName = "duke.jar"
+    archiveFileName = "astrid.jar"
 }
 
 checkstyle {

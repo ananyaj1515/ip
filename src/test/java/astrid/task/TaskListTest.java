@@ -1,13 +1,12 @@
 package astrid.task;
 
-import astrid.TaskList;
-
-
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
+import astrid.TaskList;
 
 public class TaskListTest {
 
@@ -32,7 +31,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void isEmpty_size_checks_workCorrectly() {
+    public void isEmptyAndSize_checks_workCorrectly() {
         TaskList list = new TaskList();
 
         assertTrue(list.isEmpty());

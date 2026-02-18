@@ -1,15 +1,15 @@
 package astrid;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.io.File;
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
 import astrid.task.Deadline;
-import astrid.TaskList;
 import astrid.task.ToDo;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StorageTest {
 
@@ -52,9 +52,10 @@ public class StorageTest {
 
         // write fake saved data
         temp.getParentFile().mkdirs();
-        java.nio.file.Files.write(temp.toPath(),
-                ("T | 0 | walk dog\n"
-                        + "E | 1 | party | 12/02/2026 1700-12/02/2026 1800\n").getBytes());
+        java.nio.file.Files.write(temp.toPath(), (
+                        "T | 0 | walk dog\n"
+                        + "E | 1 | party | 12/02/2026 1700-12/02/2026 1800\n").getBytes()
+        );
 
         Storage storage = new Storage(temp.getPath());
         TaskList list = new TaskList();
