@@ -1,14 +1,14 @@
-package duke;
+package astrid;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.ToDo;
+import astrid.task.Deadline;
+import astrid.task.Event;
+import astrid.task.Task;
+import astrid.task.ToDo;
 
 /**
  * Handles persistence of tasks to a file and loading tasks from that file.
@@ -18,12 +18,13 @@ import duke.task.ToDo;
  * exist and a Scanner is prepared for reading stored lines.
  */
 public class Storage {
+    private static final String DEADLINE_IDENTIFIER = "D";
+    private static final String EVENT_IDENTIFIER = "E";
+    private static final String TODO_IDENTIFIER = "T";
+
     private File file;
     private FileWriter fw;
     private Scanner fileScanner;
-    private static final String TODO_IDENTIFIER = "T";
-    private static final String DEADLINE_IDENTIFIER = "D";
-    private static final String EVENT_IDENTIFIER = "E";
 
     /**
      * Constructs a Storage instance for the provided path.
@@ -91,29 +92,29 @@ public class Storage {
             String[] params = curr.split("\\s*[|-]\\s*");
             Task task;
             switch (params[0]) {
-                case TODO_IDENTIFIER:
-                    task = new ToDo(params[2]);
-                    if ("1".equals(params[1])) {
-                        task.markAsDone();
-                    }
-                    tasks.add(task);
-                    break;
-                case DEADLINE_IDENTIFIER:
-                    task = new Deadline(params[2], params[3]);
-                    if ("1".equals(params[1])) {
-                        task.markAsDone();
-                    }
-                    tasks.add(task);
-                    break;
-                case EVENT_IDENTIFIER:
-                    task = new Event(params[2], params[3], params[4]);
-                    if ("1".equals(params[1])) {
-                        task.markAsDone();
-                    }
-                    tasks.add(task);
-                    break;
-                default:
-                    System.out.println("error");
+            case TODO_IDENTIFIER:
+                task = new ToDo(params[2]);
+                if ("1".equals(params[1])) {
+                    task.markAsDone();
+                }
+                tasks.add(task);
+                break;
+            case DEADLINE_IDENTIFIER:
+                task = new Deadline(params[2], params[3]);
+                if ("1".equals(params[1])) {
+                    task.markAsDone();
+                }
+                tasks.add(task);
+                break;
+            case EVENT_IDENTIFIER:
+                task = new Event(params[2], params[3], params[4]);
+                if ("1".equals(params[1])) {
+                    task.markAsDone();
+                }
+                tasks.add(task);
+                break;
+            default:
+                System.out.println("error");
             }
         }
     }

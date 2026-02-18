@@ -1,28 +1,29 @@
-package duke.ui;
+package astrid.ui;
 
 import java.io.IOException;
 import java.util.Scanner;
 
-import static java.lang.System.console;
-import static java.lang.System.exit;
-
-import duke.Command;
-import duke.DukeException;
-import duke.MissingArgumentException;
-import duke.Parser;
-import duke.Storage;
-import duke.TaskList;
-import duke.TaskNotFoundException;
-import duke.Ui;
-import duke.UnknownCommandException;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.ToDo;
+import astrid.AstridException;
+import astrid.Command;
+import astrid.MissingArgumentException;
+import astrid.Parser;
+import astrid.Storage;
+import astrid.TaskList;
+import astrid.TaskNotFoundException;
+import astrid.Ui;
+import astrid.UnknownCommandException;
+import astrid.task.Deadline;
+import astrid.task.Event;
+import astrid.task.Task;
+import astrid.task.ToDo;
 
 /**
- * AstridGlowspell is the UI/controller class that wires together parsing,
+ * AstridGlowspell is the main UI/controller class that wires together parsing,
  * task storage, task list management, and the user interface.
+ *
+ * This class handles all user interactions by processing commands, managing
+ * task operations (add, delete, mark, unmark, find), and persisting tasks to storage.
+ * It serves as the bridge between the Parser, TaskList, Storage, and Ui components.
  */
 public class AstridGlowspell {
 
@@ -50,6 +51,11 @@ public class AstridGlowspell {
         return simulate(input);
     }
 
+    /**
+     * Returns the chatbot's greeting message.
+     *
+     * @return greeting message from the Ui
+     */
     public String greet() {
         return ui.greet();
     }
@@ -62,7 +68,6 @@ public class AstridGlowspell {
      */
     private String list() {
         if (tasks.isEmpty()) {
-//            ui.dividerWrap("You have no tasks yet!");
             return "You have no tasks yet!";
         }
         return ui.list(tasks);
@@ -85,7 +90,7 @@ public class AstridGlowspell {
             task.markAsDone();
             return ui.mark(task);
         } catch (TaskNotFoundException e) {
-            return(e.getMessage());
+            return (e.getMessage());
         }
     }
 
@@ -248,23 +253,36 @@ public class AstridGlowspell {
             String argument = Parser.parseArguments(input);
 
             switch (command) {
-                case LIST: return list();
-                case MARK: return mark(Parser.parseIndex(argument));
-                case UNMARK: return unmark(Parser.parseIndex(argument));
-                case DELETE: return delete(Parser.parseIndex(argument));
-                case FIND: return find(argument);
-                case TODO: return toDo(argument);
-                case DEADLINE: return deadline(argument);
-                case EVENT: return event(argument);
-                case REMIND: return today();
-                case BYE:
-                    storage.saveToFile(tasks);
-                    return ui.bye();
-                default:
-                    throw new UnknownCommandException();
+            case LIST: return list();
+            case MARK: return mark(Parser.parseIndex(argument));
+            case UNMARK: return unmark(Parser.parseIndex(argument));
+            case DELETE: return delete(Parser.parseIndex(argument));
+            case FIND: return find(argument);
+            case TODO: return toDo(argument);
+            case DEADLINE: return deadline(argument);
+            case EVENT: return event(argument);
+            case REMIND: return today();
+            case BYE:
+                storage.saveToFile(tasks);
+                return ui.bye();
+            default:
+                throw new UnknownCommandException();
             }
-        } catch (DukeException | IOException e) {
+        } catch (AstridException | IOException e) {
             return e.getMessage();
         }
     }
+
+    /**
+     * Saves the current task list to persistent storage. If an IOException occurs
+     * during saving, the error message is printed to standard output.
+     */
+    public void save() {
+        try {
+            storage.saveToFile(tasks);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 }

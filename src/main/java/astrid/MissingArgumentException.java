@@ -1,6 +1,6 @@
-package duke;
+package astrid;
 
-public class MissingArgumentException extends DukeException {
+public class MissingArgumentException extends AstridException {
 
     public MissingArgumentException() {
         super("You are missing an argument in this command! Try again");

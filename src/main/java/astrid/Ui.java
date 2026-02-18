@@ -1,6 +1,6 @@
-package duke;
+package astrid;
 
-import duke.task.Task;
+import astrid.task.Task;
 
 public class Ui {
     /**

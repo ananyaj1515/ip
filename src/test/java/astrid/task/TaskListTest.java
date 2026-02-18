@@ -1,10 +1,13 @@
-package duke;
+package astrid.task;
 
-import duke.task.ToDo;
-import duke.task.Task;
+import astrid.TaskList;
+
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TaskListTest {
 
@@ -29,7 +32,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void isEmpty_and_size_checks_workCorrectly() {
+    public void isEmpty_size_checks_workCorrectly() {
         TaskList list = new TaskList();
 
         assertTrue(list.isEmpty());

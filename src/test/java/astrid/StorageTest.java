@@ -1,13 +1,25 @@
-package duke;
+package astrid;
 
-import duke.task.*;
-import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.IOException;
-import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+import astrid.task.Deadline;
+import astrid.TaskList;
+import astrid.task.ToDo;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StorageTest {
 
+    /**
+     * Tests that the storage correctly saves tasks to a file and can load them back.
+     * Creates a temporary file, saves two tasks (a ToDo and a Deadline), then verifies
+     * that loading the file produces identical tasks.
+     *
+     * @throws IOException if there are file I/O errors during the test.
+     */
     @Test
     public void saveToFile_writesCorrectly() throws IOException {
         File temp = new File("data/test.txt");
@@ -27,6 +39,13 @@ public class StorageTest {
         assertEquals("[D][ ] submit assignment (by: Jan 30 2026, 18:00)", loaded.get(2).toString());
     }
 
+    /**
+     * Tests that the storage correctly loads tasks from a file.
+     * Writes fake task data to a temporary file in the storage format, then verifies
+     * that loading the file correctly parses and reconstructs the tasks.
+     *
+     * @throws IOException if there are file I/O errors during the test.
+     */
     @Test
     public void loadStoredTasks_readsCorrectly() throws IOException {
         File temp = new File("data/testLoad.txt");
@@ -34,8 +53,8 @@ public class StorageTest {
         // write fake saved data
         temp.getParentFile().mkdirs();
         java.nio.file.Files.write(temp.toPath(),
-                ("T | 0 | walk dog\n" +
-                        "E | 1 | party | 12/02/2026 1700-12/02/2026 1800\n").getBytes());
+                ("T | 0 | walk dog\n"
+                        + "E | 1 | party | 12/02/2026 1700-12/02/2026 1800\n").getBytes());
 
         Storage storage = new Storage(temp.getPath());
         TaskList list = new TaskList();

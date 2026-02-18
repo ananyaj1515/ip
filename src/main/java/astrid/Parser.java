@@ -1,4 +1,4 @@
-package duke;
+package astrid;
 
 /**
  * Utility class for parsing user input into command parts.
@@ -46,18 +46,18 @@ public class Parser {
      * Parses an integer index from the provided string.
      *
      * The method attempts to convert the entire {@code input} to an integer.
-     * If the conversion fails, a {@link DukeException} is thrown with a
+     * If the conversion fails, a {@link AstridException} is thrown with a
      * descriptive message.
      *
      * @param input string representation of the index
      * @return the parsed integer index
-     * @throws DukeException if {@code input} cannot be parsed as an integer
+     * @throws AstridException if {@code input} cannot be parsed as an integer
      */
-    public static int parseIndex(String input) throws DukeException {
+    public static int parseIndex(String input) throws AstridException {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new DukeException("Index must be a number");
+            throw new AstridException("Index must be a number");
         }
     }
 

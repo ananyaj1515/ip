@@ -1,4 +1,4 @@
-package duke;
+package astrid;
 
 public enum Command {
         LIST, MARK, UNMARK, DELETE, TODO, DEADLINE, EVENT, BYE, FIND, REMIND, HELP;

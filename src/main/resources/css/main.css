@@ -1,0 +1,56 @@
+.root {
+
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.anchor-pane {
+    -fx-background-image: url("../images/chat-wallpaper.jpg");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.text-field {
+    -fx-background-color: #000000;
+    -fx-font: 20px "Arial";
+}
+
+.button {
+    -fx-background-color:  #152238;
+    -fx-font: italic bold 17px "Mono";
+}
+
+.button:hover {
+    -fx-background-color:cyan;
+    -fx-font-size: 18px;
+}
+
+.button:pressed {
+    -fx-background-color:orange;
+    -fx-font-size: 20px;
+}
+
+.scroll-pane,
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar {
+    -fx-font-size: 10px;
+    -fx-background-color: #ffffff;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 1em;
+}
+
+/* Hides the increment and decrement buttons. */
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-pref-height: 0;
+    -fx-opacity: 0;
+}
+

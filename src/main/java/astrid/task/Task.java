@@ -1,7 +1,4 @@
-package duke.task;
-import duke.TaskList;
-
-import java.time.LocalDate;
+package astrid.task;
 
 public abstract class Task {
     protected String desc;

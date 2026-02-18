@@ -1,9 +1,14 @@
-package duke;
+package astrid;
 
 import java.util.ArrayList;
 
-import duke.task.Task;
+import astrid.task.Task;
 
+/**
+ * Manages a list of tasks and provides operations for task management.
+ * This class wraps an ArrayList of Task objects and provides convenient methods
+ * for adding, removing, retrieving, searching, and organizing tasks.
+ */
 public class TaskList {
     private ArrayList<Task> tasks = new ArrayList<>();
 
