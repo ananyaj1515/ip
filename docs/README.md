@@ -1,8 +1,6 @@
-# Duke User Guide
+# _Astrid Sees_ User Guide
 
-// Update the title above to match the actual product name
-
-// Product screenshot goes here
+![representative screenshot of product](Ui.png)
 
 // Product intro goes here
 
