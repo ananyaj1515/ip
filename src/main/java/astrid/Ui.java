@@ -115,7 +115,7 @@ public class Ui {
      */
     public String toDo(Task added, int size) {
         StringBuilder str = new StringBuilder();
-        str.append("A new intention enters the stars.\n I've added the task\n");
+        str.append("A new intention enters the stars.\nI've added the task\n");
         str.append(String.format("\t%s\n", added));
         str.append(String.format("Now you have " + size + " tasks in the list\n"));
         return str.toString();
@@ -130,7 +130,7 @@ public class Ui {
      */
     public String deadline(Task added, int size) {
         StringBuilder str = new StringBuilder();
-        str.append("A fated alignment has been marked.\n I've added the task\n");
+        str.append("A fated alignment has been marked.\nI've added the task\n");
         str.append(String.format("\t%s\n", added));
         str.append(String.format("Now you have " + size + " tasks in the list\n"));
         return str.toString();
@@ -145,7 +145,7 @@ public class Ui {
      */
     public String event(Task added, int size) {
         StringBuilder str = new StringBuilder();
-        str.append("A cosmic affair begins and ends in my charts.\n I've added the task\n");
+        str.append("A cosmic affair begins and ends in my charts.\nI've added the task\n");
         str.append(String.format("\t%s\n", added));
         str.append(String.format("Now you have " + size + " tasks in the list\n"));
         return str.toString();
