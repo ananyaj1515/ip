@@ -191,7 +191,7 @@ The moon requests your attention today for:
 
 ### Exiting the Application: `bye`
 
-Close Snow and save your tasks.
+Close Astrid and save your tasks.
 
 **Format:** `bye`
 
@@ -205,19 +205,19 @@ Close Snow and save your tasks.
 
 ## Data Storage
 
-Snow automatically saves your tasks to a file called `data/AstridGlowspell.txt`. Your tasks will be preserved between sessions, so you don't have to worry about losing your data!
+Astrid automatically saves your tasks to a file called `data/AstridGlowspell.txt`. Your tasks will be preserved between sessions, so you don't have to worry about losing your data!
 
 ## Tips
 
 1. **Use descriptive task names** - This makes it easier to find tasks later
-2. **Set realistic deadlines** - Snow will help you stay organized
+2. **Set realistic deadlines** - Astrid will help you stay organized
 3. **Use the find feature** - Quickly locate specific tasks
 4. **Add locations** - Keep track of where you need to be
 5. **Regular cleanup** - Delete completed tasks that you no longer need to track
 
 ## Troubleshooting
 
-**Q: Snow won't start when I double-click the JAR file**  
+**Q: Astrid won't start when I double-click the JAR file**  
 A: Use the command line instead: `java -jar astrid.jar`. JavaFX applications require specific launch parameters that aren't available when double-clicking.
 
 **Q: Astrid won't start from command line**  
