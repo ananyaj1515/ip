@@ -29,7 +29,7 @@ public class MainWindow extends AnchorPane {
 
     private AstridGlowspell chatbot;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/me.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/me.jpg"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/astrid.png"));
 
 

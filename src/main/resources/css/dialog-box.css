@@ -1,6 +1,7 @@
 .label {
-    -fx-background-color: linear-gradient(to bottom right, #0a0f2c, #1a0f3f, #2e0a4f);
-    -fx-border-color: #bf00ff;
+    -fx-background-color: linear-gradient(to bottom right, #061018, #0b1c2a, #13293a);
+
+    -fx-border-color: #ffffff;
     -fx-border-width: 1px;
     -fx-background-radius: 1em 1em 0 1em;
     -fx-border-radius: 1em 1em 0 1em;
@@ -14,7 +15,8 @@
 #displayPicture {
     /* Shadow effect on image. */
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 5, 5);
-
+    -fx-border-color: #ffffff;
+    -fx-border-width: 1px;
     /* Change size of image. */
     -fx-scale-x: 1;
     -fx-scale-y: 1;
