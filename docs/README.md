@@ -5,7 +5,7 @@
 Astrid is an eccentric task management chatbot who helps you track and manage your tasks in a fun and interactive way. With Astrid, you can easily add, view, and organize your tasks/
 ## Quick Start
 
-1. Download the latest `astrid.jar` from the [releases page](https://github.com/Duyy0406/ip/releases)
+1. Download the latest `astrid.jar` from the [releases page](https://github.com/ananyaj1515/ip/releases)
 2. Open a terminal/command prompt and navigate to the folder containing `astrid.jar`
 3. Run the command: `java -jar astrid.jar`
 4. Astrid will greet you with a friendly welcome message
@@ -224,7 +224,7 @@ A: Use the command line instead: `java -jar astrid.jar`. JavaFX applications req
 A: Make sure you have Java 11 or later installed on your system. You can check with `java -version`.
 
 **Q: My tasks disappeared**  
-A: Check if the `data/AstridGlowspell.txt` file exists in the same folder as the Snow application.
+A: Check if the `data/AstridGlowspell.txt` file exists in the same folder as the Astrid application.
 
 **Q: Date format not recognized**  
 A: Use the supported format: `DD/MM/YYYY HHMM`
