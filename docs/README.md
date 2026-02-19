@@ -26,10 +26,10 @@ todo Read CS2103T textbook chapter 5
 
 **Expected output:**
 ```
-A fated alignment has been marked. 
+A new intention enters the stars. 
 I've added the task:
-    [T][ ] Read CS2103T textbook chapter 5
-Now you have 1 task in your list
+        [T][ ] Read CS2103T textbook chapter 5
+Now you have 1 tasks in your list
 ```
 
 ### Adding a Deadline: `deadline`
@@ -50,7 +50,7 @@ deadline Submit project proposal /by 15/12/2025 2359
 ```
 A fated alignment has been marked. 
 I've added the task:
-    [D][ ] Submit project proposal (by: Dec 15 2024 11:59 PM)
+        [D][ ] Submit project proposal (by: Dec 15 2025, 23:59)
 Now you have 2 tasks in your list
 ```
 
@@ -69,7 +69,7 @@ event Team meeting /from 25/11/2024 1400 /to 25/11/2024 1600
 ```
 A comsic event begins and ends in my charts.
 I've added the task:
-    [E][ ] Team meeting (from: Nov 25 2024 2:00 PM to: Nov 25 2024 4:00 PM)
+        [E][ ] Team meeting (from: Nov 25 2024, 14:00 to: Nov 25 2024, 16:00)
 Now you have 3 tasks in your list
 ```
 
@@ -88,8 +88,8 @@ list
 ```
 Your cosmic ledger, Starlight:
 1. [T][ ] Read CS2103T textbook chapter 5
-2. [D][ ] Submit project proposal (by: Dec 15 2024 11:59 PM)
-3. [E][ ] Team meeting (from: Nov 25 2024 2:00 PM to: Nov 25 2024 4:00 PM)
+2. [D][ ] Submit project proposal (by: Dec 15 2024, 23:59)
+3. [E][ ] Team meeting (from: Nov 25 2024, 14:00 to: Nov 25 2024, 16:00)
 ```
 
 ### Marking Tasks as Done: `mark`
@@ -107,7 +107,7 @@ mark 1
 ```
 Destiny fulfilled. Saturn approves.
 I've marked this task as done:
-  [T][X] Read CS2103T textbook chapter 5
+      [T][X] Read CS2103T textbook chapter 5
 ```
 
 ### Unmarking Tasks: `unmark`
@@ -125,7 +125,7 @@ unmark 1
 ```
 Fate delayed... interesting.
 I've marked this task as not done yet:
-  [T][ ] Read CS2103T textbook chapter 5
+      [T][ ] Read CS2103T textbook chapter 5
 ```
 
 ### Deleting Tasks: `delete`
@@ -143,7 +143,7 @@ delete 2
 ```
 Erased from the cosmic scroll.
 I've removed this task
-  [D][ ] Submit project proposal (by: Dec 15 2024 11:59 PM)
+      [D][ ] Submit project proposal (by: Dec 15 2024, 23:59)
 Now you have 2 tasks in your list
 ```
 
@@ -161,18 +161,24 @@ find meeting
 **Expected output:**
 ```
 The stars revealed this:
-1. [E][ ] Team meeting (from: Nov 25 2024 2:00 PM to: Nov 25 2024 4:00 PM)
+1. [E][ ] Team meeting (from: Nov 25 2024, 14:00 to: Nov 25 2024, 16:00)
 ```
 
 ### Seeing reminders: `remind`
 View list of tasks due today
 
-**Format:** `delete`
+**Format:** `remind`
 
-**Example:**
+Add a task due today first.
+
 ```
 deadline Submit quiz /by (Add todays' date here)
 deadline Submit quiz /by 19/02/2026 2359
+```
+
+**Example:**
+```
+
 remind
 
 ```
