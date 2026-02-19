@@ -15,8 +15,8 @@
 }
 
 .text-field {
-    -fx-background-color: #000000;
-    -fx-font: 20px "Arial" #ffffff;
+    -fx-background-color: #fff;
+    -fx-font: 20px "Arial" #000;
 }
 
 .button {
