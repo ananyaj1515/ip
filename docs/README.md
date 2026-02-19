@@ -235,3 +235,22 @@ A: Use the `find` command with keywords from the task description.
 ---
 
 *Happy task managing with Astrid! ✨*
+
+---
+
+## Command Summary
+
+| Action | Format | Example |
+|--------|--------|---------|
+| Todo | `todo DESCRIPTION` | `todo Read CS2103T textbook chapter 5` |
+| Deadline | `deadline DESCRIPTION /by DATE TIME` | `deadline Submit proposal /by 15/12/2025 2359` |
+| Event | `event DESCRIPTION /from START_TIME /to END_TIME` | `event Team meeting /from 25/11/2024 1400 /to 25/11/2024 1600` |
+| List | `list` | `list` |
+| Mark | `mark INDEX` | `mark 1` |
+| Unmark | `unmark INDEX` | `unmark 1` |
+| Delete | `delete INDEX` | `delete 2` |
+| Find | `find KEYWORD [MORE_KEYWORDS]` | `find meeting` |
+| Remind | `remind` | `remind` |
+| Exit | `bye` | `bye` |
+
+
