@@ -204,7 +204,12 @@ public class AstridGlowspell {
             if (inputs.length < numArguments) {
                 throw new MissingArgumentException("Oh no! You forgot to enter the description or the deadline!");
             }
-            Task curr = new Deadline(inputs[0].trim(), inputs[1].trim());
+            Task curr = null;
+            try {
+                curr = new Deadline(inputs[0].trim(), inputs[1].trim());
+            } catch (AstridException e) {
+                return e.getMessage();
+            }
             tasks.add(curr);
             return ui.deadline(curr, tasks.size());
 
@@ -229,7 +234,13 @@ public class AstridGlowspell {
                 throw new MissingArgumentException(
                         "Oh no! You forgot to enter the description or the start or the end!");
             }
-            Task curr = new Event(inputs[0].trim(), inputs[1].trim(), inputs[2].trim());
+            Task curr = null;
+            try {
+                curr = new Event(inputs[0].trim(), inputs[1].trim(), inputs[2].trim());
+            } catch (AstridException e) {
+                return e.getMessage();
+            }
+
             tasks.add(curr);
             return ui.event(curr, tasks.size());
 

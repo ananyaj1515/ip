@@ -1,5 +1,7 @@
 package astrid.task;
 
+import astrid.AstridException;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -24,12 +26,17 @@ public class Event extends Task {
      * @param start the start date and time in format "dd/MM/yyyy HHmm"
      * @param end the end date and time in format "dd/MM/yyyy HHmm"
      */
-    public Event(String desc, String start, String end) {
+    public Event(String desc, String start, String end) throws AstridException {
         super(desc);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        this.start = LocalDateTime.parse(start, INPUT_FORMAT);
-        this.end = LocalDateTime.parse(end, INPUT_FORMAT);
+        try {
+            this.start = LocalDateTime.parse(start, INPUT_FORMAT);
+            this.end = LocalDateTime.parse(end, INPUT_FORMAT);
+        } catch (Exception e) {
+            // Catch parsing errors and throw your custom exception
+            throw new AstridException("Invalid date/time format. Please use dd/MM/yyyy HHmm.");
+        }
     }
+
 
     /**
      * Returns a formatted string representation of the event.

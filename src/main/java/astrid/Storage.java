@@ -87,34 +87,50 @@ public class Storage {
      * @param tasks TaskList to populate with loaded tasks
      */
     public void loadStoredTasks(TaskList tasks) {
+        int lineNumber = 0;
         while (fileScanner.hasNextLine()) {
+            lineNumber++;
             String curr = this.fileScanner.nextLine();
             String[] params = curr.split("\\s*[|-]\\s*");
             Task task;
-            switch (params[0]) {
-            case TODO_IDENTIFIER:
-                task = new ToDo(params[2]);
-                if ("1".equals(params[1])) {
-                    task.markAsDone();
+            try {
+                switch (params[0]) {
+                    case TODO_IDENTIFIER:
+                        task = new ToDo(params[2]);
+                        if ("1".equals(params[1])) {
+                            task.markAsDone();
+                        }
+                        tasks.add(task);
+                        break;
+                    case DEADLINE_IDENTIFIER:
+                        try {
+                            task = new Deadline(params[2], params[3]);
+                            if ("1".equals(params[1])) {
+                                task.markAsDone();
+                            }
+                            tasks.add(task);
+                        } catch (AstridException e) {
+                            System.out.println("Error in line " + lineNumber + ": " + e.getMessage());
+                            continue; // skip this task
+                        }
+                        break;
+                    case EVENT_IDENTIFIER:
+                        try {
+                            task = new Event(params[2], params[3], params[4]);
+                            if ("1".equals(params[1])) {
+                                task.markAsDone();
+                            }
+                            tasks.add(task);
+                        } catch (AstridException e) {
+                            System.out.println("Error in line " + lineNumber + ": " + e.getMessage());
+                            continue; // skip this task
+                        }
+                        break;
+                    default:
+                        System.out.println("Error in line " + lineNumber + ": unrecognized task type");
                 }
-                tasks.add(task);
-                break;
-            case DEADLINE_IDENTIFIER:
-                task = new Deadline(params[2], params[3]);
-                if ("1".equals(params[1])) {
-                    task.markAsDone();
-                }
-                tasks.add(task);
-                break;
-            case EVENT_IDENTIFIER:
-                task = new Event(params[2], params[3], params[4]);
-                if ("1".equals(params[1])) {
-                    task.markAsDone();
-                }
-                tasks.add(task);
-                break;
-            default:
-                System.out.println("error");
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("Error in line " + lineNumber + ": missing parameters");
             }
         }
     }

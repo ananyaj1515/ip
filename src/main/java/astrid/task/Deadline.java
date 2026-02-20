@@ -1,5 +1,7 @@
 package astrid.task;
 
+import astrid.AstridException;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -23,9 +25,13 @@ public class Deadline extends Task {
      * @param desc the description of the deadline task
      * @param finishBy the due date and time in format "dd/MM/yyyy HHmm"
      */
-    public Deadline(String desc, String finishBy) {
+    public Deadline(String desc, String finishBy) throws AstridException {
         super(desc);
-        this.finishBy = LocalDateTime.parse(finishBy, INPUT_FORMAT);
+        try {
+            this.finishBy = LocalDateTime.parse(finishBy, INPUT_FORMAT);
+        } catch (Exception e) {
+            throw new AstridException("Invalid date/time format. Please use dd/MM/yyyy HHmm.");
+        }
     }
 
     /**

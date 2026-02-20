@@ -1,3 +1,4 @@
 T | 0 | Read CS2103T textbook chapter 5
 E | 0 | Team meeting | 25/11/2024 1400-25/11/2024 1600
 D | 0 | Submit quiz | 19/02/2026 2359
+T | 0 | todo

@@ -43,7 +43,7 @@ test {
 }
 
 application {
-    mainClass.set("astrid.Main")
+    mainClass.set("astrid.ui.Launcher")
 }
 
 shadowJar {
