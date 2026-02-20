@@ -172,7 +172,7 @@ View list of tasks due today
 Add a task due today first.
 
 ```
-deadline Submit quiz /by (Add todays' date here)
+deadline Submit quiz /by (Add today's date here)
 deadline Submit quiz /by 19/02/2026 2359
 ```
 
@@ -253,4 +253,7 @@ A: Use the `find` command with keywords from the task description.
 | Remind | `remind` | `remind` |
 | Exit | `bye` | `bye` |
 
+---
+
+This project uses JavaFX for the GUI. Artificial Intelligence tools (GitHub Co-pilot in IntelliJ) were used to generate JavaDoc comments, improve  CSS styling and refactor code. This README.md is adapted from the original template provided by the CS2103T teaching team, as well as the version by [Min Wai Phyo](https://minwaiphyo.github.io/ip/)
 
