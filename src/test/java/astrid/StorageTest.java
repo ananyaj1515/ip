@@ -21,7 +21,7 @@ public class StorageTest {
      * @throws IOException if there are file I/O errors during the test.
      */
     @Test
-    public void saveToFile_writesCorrectly() throws IOException {
+    public void saveToFile_writesCorrectly() throws IOException, AstridException {
         File temp = new File("data/test.txt");
         Storage storage = new Storage(temp.getPath());
 
